@@ -14,12 +14,12 @@
 				<thead>
 					<th>
 						<div class="row">
-							<label class="col-sm-3">Dodaj tag</label>
-
-							<a class="btn btn-sm btn-success" href="#add_tag" onclick="add_tag();">+</a>
+							
+							<a class="btn btn-sm btn-success" href="#add_tag" onclick="add_tag();">Dodaj tag</a>
 
 							<div class="col-sm-1"></div>
-
+							
+							<!-- dodaj tag -->
 							<div class="form-group" id="add_tag" style="display: none;">
 								<form action="{{ route('tags.store') }}" method="post" id="tag">
 									{{ csrf_field() }}
@@ -40,7 +40,7 @@
 						<ul class="tag success">
 							<li class="tag-elem">
 								<!--<a href=" {{ route('tags.edit', ['id' => $tag->id ]) }}">{{ $tag->tag }}</a> -->
-								<a href="" data-toggle="modal" data-target="editmodal">{{ $tag->tag }}</a>
+								<a href="" data-toggle="modal" data-target="#editmodal" data="{{ $tag->id }}" onclick="update_modal(this.data)">{{ $tag->tag }}</a>
 								
 							</li>
 							<li class="tag-elem">
@@ -65,7 +65,7 @@
 
 	<!-- modal -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   	<div class="modal-dialog" role="document">
     	<div class="modal-content">
 
@@ -90,7 +90,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(() =>{
-			$(input#tag_add).on('keypress', (e) => {
+			$('input#tag_add').on('keypress', (e) => {
 				if(e.which == 10 || e.which == 13){
 					e.preventDefault();
 					if($(e.target).val() != ''){
@@ -101,6 +101,7 @@
 			}); 
 		});
 		function add_tag(){
+			alert('iside');
 			$('div#add_tag').toggle('slow');
 		}
 	</script>
