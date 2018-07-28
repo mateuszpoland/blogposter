@@ -1,0 +1,52 @@
+.tag{
+
+	color: white;
+	padding: 8px;
+	margin-right: 5px;
+	min-width: 15%;	
+	float: left;
+	text-align: center;
+}
+ul{
+	list-style: none;
+}
+ul li{
+	float: left;
+	position: relative;
+}
+
+li .tag-elem{
+	width: 150px;
+	height: 40px;
+	background-color: #2196F3;
+}
+li.tag-elem a{
+	color: white;
+	font-weight: 700;
+	text-decoration: none;
+	text-align: center;
+	display: inline-block;
+	padding: 0.3em 1.5em;
+	display: block;
+}
+/*
+.tag-elem a::after{
+	content: '';
+	clear: both;
+	display: block;
+}
+*/
+.tag-delete{
+	padding: 1em;
+	text-align: right;
+	color: red;
+	font-weight: 700;
+}
+
+.success{
+	background-color: lightblue;
+	border-radius: 3px;		
+}
+.info{
+	background-color: #ff9800;
+}
