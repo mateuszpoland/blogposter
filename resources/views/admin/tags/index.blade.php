@@ -40,7 +40,7 @@
 						<ul class="tag success">
 							<li class="tag-elem">
 								<!--<a href=" {{ route('tags.edit', ['id' => $tag->id ]) }}">{{ $tag->tag }}</a> -->
-								<a href="" data-toggle="modal" data-target="#editmodal" data="{{ $tag->id }}" onclick="update_modal(this.data)">{{ $tag->tag }}</a>
+								<a href="" data-toggle="modal" data-target="#editmodal" id="{{ $tag->id }}" onclick="update_modal(this.id)">{{ $tag->tag }}</a>
 								
 							</li>
 							<li class="tag-elem">
@@ -70,19 +70,24 @@
     	<div class="modal-content">
 
       		<div class="modal-header">
-	        	<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        	<h5 class="modal-title" id="exampleModalLabel">Edytuj tag</h5>
 	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          	<span aria-hidden="true">&times;</span>
 	        	</button>
       		</div>
 
      		<div class="modal-body">
-        
+     			<!-- edycja tagu -->
+        		<form class="form-group" action="{{ route('tags.update') }}" method="post">
+        			{{ csrf_field() }}
+        			<input type="hidden" id="tag_id" name="tag_id" value="">
+        			<input type="text" name="tag_new_name">
+        			<input type="submit" class="btn btn-xs btn-success" value="Zapisz">
+        		</form>
       		</div>
 
       		<div class="modal-footer">
 	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        	<button type="button" class="btn btn-primary">Save changes</button>
 	      	</div>
     	</div>
   	</div>
@@ -103,6 +108,10 @@
 		function add_tag(){
 			alert('iside');
 			$('div#add_tag').toggle('slow');
+		}
+
+		function update_modal(id){
+			$('#editmodal').find('input#tag_id').val(id);
 		}
 	</script>
 

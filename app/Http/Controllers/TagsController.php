@@ -88,14 +88,14 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $tag = Tag::find($id);
+        $tag = Tag::find($request->tag_id);
         $this->validate($request, [
-            'tag' => 'required'
+            'tag_new_name' => 'required'
         ]);
 
-        $tag->tag = $request->tag;
+        $tag->tag = $request->tag_new_name;
 
         $tag->save();
 
