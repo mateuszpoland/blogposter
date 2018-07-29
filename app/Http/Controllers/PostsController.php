@@ -152,7 +152,7 @@ class PostsController extends Controller
             'title' => 'required|max:255', 
             'content' => 'required', 
             'category_id' => 'required',
-            'tags'
+            'tags' => 'required'
         ]);
         $post = Post::find($id);
 
@@ -168,8 +168,9 @@ class PostsController extends Controller
 
         $post->tytul = $request->title;
         $post->tresc = $request->content;
-        $post->kategoria_id = $request->category_id;
-        $post->tags()->attach($request->tags);
+        $post->kategoria_id = $request->category_id; 
+        //synchronizacja - update listy tagow dla danego posta 
+        $post->tags()->sync($request->tags);
 
         $post->save();
         return redirect()->back()

@@ -39,7 +39,7 @@
 					<label for="katselect">Kategoria</label>
 					<select class="form-control" id="category" name="category_id">
 						@foreach($categories as $category)
-						<option value="{{$category->id}}">{{$category->nazwa}}</option>
+						<option value="{{$category->id}}" @if($category->id == $post->kategoria_id) selected= "selected" @endif>{{$category->nazwa}}</option>
 						@endforeach
 					</select>
 				</div>
