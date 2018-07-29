@@ -76,6 +76,7 @@ class PostsController extends Controller
             'picture' => 'required|image',
             'content' => 'required',
             'category_id'=> 'required',
+            'tags' => 'required',
         ]);
         //dd($request->all());
         $picture = $request->picture;
@@ -122,11 +123,19 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        $tags = Tag::all();
         $categories = Kategoria::all();
+        $post_tags = array();
+        foreach($post->tags as $tag)
+        {
+            $post_tags[] = $tag->tag;
+        }
         return view('admin.posts.edit')
                     ->with([
                         'post' => $post,
                         'categories' => $categories,
+                        'tags' => $tags,
+                        'post_tags' => $post_tags,
                     ]);
     }
 
@@ -143,6 +152,7 @@ class PostsController extends Controller
             'title' => 'required|max:255', 
             'content' => 'required', 
             'category_id' => 'required',
+            'tags'
         ]);
         $post = Post::find($id);
 
@@ -159,6 +169,7 @@ class PostsController extends Controller
         $post->tytul = $request->title;
         $post->tresc = $request->content;
         $post->kategoria_id = $request->category_id;
+        $post->tags()->attach($request->tags);
 
         $post->save();
         return redirect()->back()

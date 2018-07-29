@@ -28,9 +28,15 @@
 							<td>{{ $post->tytul }}
 								<div style="font-size: 0.75rem;">Tagi:</div>
 								@foreach($post->tags as $tag)
+									@if(!empty($tag))
 									<span class="tag-info" style="color:gray; font-size: 0.8rem; float: left; padding: 0 5px 0 5px;">
 										{{ $tag->tag }}
 									</span>
+									@elseif($tag == false)
+									<span class="tag-info" style="color:gray; font-size: 0.8rem; float: left; padding: 0 5px 0 5px;">
+										brak
+									</span>
+									@endif
 								@endforeach
 							</td>
 

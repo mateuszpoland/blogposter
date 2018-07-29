@@ -44,6 +44,18 @@
 					</select>
 				</div>
 
+				<!-- tagi -->
+				<div class="form-group">
+					<label for="tags" style="font-weight: 700;">Tagi</label>
+					@foreach($tags as $tag)
+						<div class="checkbox">
+							<label style="float: left; padding: 10px 5px 0 5px;">
+								<input type="checkbox" name="tags[]" 	value="{{ $tag->id }}" @if(in_array($tag->tag, $post_tags))checked="true"@endif }}>{{ $tag->tag }}</label>
+						</div>
+					@endforeach
+					<div style="display: block; clear: both;"></div>
+				</div>
+
 				<div class="form-group" style="margin-top: 10px;">
 					<div class="text-center">
 						<button type="submit" class="btn btn-success">Opublikuj</button>
