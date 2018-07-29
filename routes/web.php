@@ -1,15 +1,12 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/*Routing testowy */
+Route::get('/test', function(){
+	//posty dla daneja kategorii
+	//SELECT * FROM posts WHERE id_kat = 2
+	///return App\Post::find(2)->category;
+	return App\Post::find(11)->tags;
+});
 
 Route::get('/', function () {
     return view('welcome');

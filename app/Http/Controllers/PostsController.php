@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 use App\Kategoria;
 use Session;
 
@@ -18,6 +19,7 @@ class PostsController extends Controller
     public function index()
     {
         $postlist = Post::all();
+        //$tags = DB::select("SELECT ")
         return view('admin.posts.index')
                 ->with('posts', $postlist);  
     }
@@ -44,7 +46,9 @@ class PostsController extends Controller
 
         return view('admin.posts.create')
                 //dodaj liste wszystkich kategorii do widoku
-                ->with('categories', Kategoria::all());
+                ->with('categories', Kategoria::all())
+                //tagi
+                ->with('tags', Tag::all());
     }
 
     /**
@@ -89,6 +93,9 @@ class PostsController extends Controller
             'featured' => $pic_path,
             'slug' => str_slug($request->title),
         ]);
+
+        //dodaj tagi do tabeli post_tag
+        $post->tags()->attach($request->tags);
         
         return redirect()->back()
             ->with('success', 'Utworzono nowy post  '.$post['tytul']);

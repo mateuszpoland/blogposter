@@ -43,7 +43,15 @@
 						@endforeach
 					</select>
 				</div>
-
+				
+				<!-- tagi -->
+				<label for="tags" style="font-weight: 700;">Tagi</label>
+				@foreach($tags as $tag)
+				<div class="checkbox">
+					<label style="float: left; padding: 10px 5px 0 5px;"><input type="checkbox" name="tags[]" value="{{ $tag->id }}">{{ $tag->tag }}</label>
+				</div>
+				@endforeach
+				<div style="display: block; clear: both;"></div>
 				<div class="form_group">
 					<a href="#add_cat" onclick="show_cat();">Dodaj nową kategorię</a>
 				</div>

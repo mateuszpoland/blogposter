@@ -25,7 +25,14 @@
 								<img src="{{ $post->featured }}" alt="{{ $post->title }}" width="100px" height="50px">
 							</td>
 
-							<td>{{ $post->tytul }}</td>
+							<td>{{ $post->tytul }}
+								<div style="font-size: 0.75rem;">Tagi:</div>
+								@foreach($post->tags as $tag)
+									<span class="tag-info" style="color:gray; font-size: 0.8rem; float: left; padding: 0 5px 0 5px;">
+										{{ $tag->tag }}
+									</span>
+								@endforeach
+							</td>
 
 							<td>
 								<a class="btn btn-lg btn-warning" href="{{ route('posts.delete', ['id' => $post->id]) }}"><span style="color: white; font-weight: 800;">x</span></a>

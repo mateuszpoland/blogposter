@@ -72,9 +72,9 @@ class CategoriesController extends Controller
         //zwroc wiadomość o utworzeniu nowej kategorii
         //mozna to tez zrobic:
         //Session::flash('success', 'Dodano nową kategorię');
-        //return redirect()->route('categories')->with('success', 
-         //   'Dodano nową kategorię: '.$category->nazwa
-       // );
+        return redirect()->route('categories')->with('success', 
+           'Dodano nową kategorię: '.$category->nazwa
+        );
     }
 
     /**

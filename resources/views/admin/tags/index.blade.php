@@ -40,7 +40,7 @@
 						<ul class="tag success">
 							<li class="tag-elem">
 								<!--<a href=" {{ route('tags.edit', ['id' => $tag->id ]) }}">{{ $tag->tag }}</a> -->
-								<a href="" data-toggle="modal" data-target="#editmodal" id="{{ $tag->id }}" onclick="update_modal(this.id)">{{ $tag->tag }}</a>
+								<a href="" data-toggle="modal" data-target="#editmodal" id="{{ $tag->id }}" onclick="update_modal(this.id, this.html)">{{ $tag->tag }}</a>
 								
 							</li>
 							<li class="tag-elem">
@@ -70,7 +70,7 @@
     	<div class="modal-content">
 
       		<div class="modal-header">
-	        	<h5 class="modal-title" id="exampleModalLabel">Edytuj tag</h5>
+	        	<h5 class="modal-title" id="exampleModalLabel">Edytuj tag</h5><span class="tag-info" style="color: green;"></span>
 	        	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          	<span aria-hidden="true">&times;</span>
 	        	</button>
@@ -87,7 +87,7 @@
       		</div>
 
       		<div class="modal-footer">
-	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
 	      	</div>
     	</div>
   	</div>
@@ -106,12 +106,12 @@
 			}); 
 		});
 		function add_tag(){
-			alert('iside');
 			$('div#add_tag').toggle('slow');
 		}
 
 		function update_modal(id){
 			$('#editmodal').find('input#tag_id').val(id);
+			$('.tag-info').html()
 		}
 	</script>
 
