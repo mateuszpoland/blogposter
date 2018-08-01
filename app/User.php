@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'token'
+        'name', 'email', 'password', 'token', 'admin'
     ];
 
     /**
@@ -39,4 +39,10 @@ class User extends Authenticatable
         $this->notify(new VerifyEmail($this));
     }
     */
+
+    //relacja z profilem użytkownika
+    public function profile()
+    {
+        return $this->hasOne('App\Profile');
+    }
 }

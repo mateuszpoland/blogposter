@@ -56,7 +56,7 @@
 				</div>
 				
 				<div class="form_group">
-					<a href="#add_cat" onclick="show_cat();">Dodaj nową kategorię</a>
+					<a href="#add_cat" onclick="show_cat(); return false;">Dodaj nową kategorię</a>
 				</div>
 
 				<div class="form-group" style="margin-top: 10px;">

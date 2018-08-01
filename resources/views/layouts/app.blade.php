@@ -103,6 +103,9 @@
                                  <li class="list-group-item">
                                     <a href="{{ route('categories') }}">Zobacz listę kategorii</a>
                                 </li>
+                                 <li class="list-group-item">
+                                    <a href="{{ route('users.index') }}">Użytkownicy</a>
+                                </li>
                                 <li class="list-group-item">
                                     <a href="{{ route('tags.index') }}">Tagi</a>
                                 </li>

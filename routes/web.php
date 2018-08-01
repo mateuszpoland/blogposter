@@ -2,10 +2,11 @@
 
 /*Routing testowy */
 Route::get('/test', function(){
-	//posty dla daneja kategorii
-	//SELECT * FROM posts WHERE id_kat = 2
 	///return App\Post::find(2)->category;
-	return App\Post::find(11)->tags;
+	//return App\Post::find(11)->tags;
+	//return App\Profile::find(1)->user;
+	return App\User::find(1)->profile; // -> "SELECT * FROM profiles p INNER JOIN users AS u ON u.id = p.user_id WHERE u.id = 1"
+
 });
 
 Route::get('/', function () {
@@ -123,6 +124,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::get('tags/delete/{id}', [
 		'uses' => 'TagsController@delete',
 		'as' => 'tags.delete'
+	]);
+
+	Route::get('/users', [
+		'uses' => 'UsersController@index',
+		'as' => 'users.index'
+	]);
+
+	Route::get('users/create', [
+		'uses' => 'UsersController@create',
+		'as' => 'users.create'
 	]);
 
 });
