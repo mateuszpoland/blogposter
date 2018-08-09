@@ -19,7 +19,6 @@ class PostsController extends Controller
     public function index()
     {
         $postlist = Post::all();
-        //$tags = DB::select("SELECT ")
         return view('admin.posts.index')
                 ->with('posts', $postlist);  
     }
@@ -65,7 +64,6 @@ class PostsController extends Controller
             htmlentities($request->category_added);
 
             //@todo - dorobić walidacje czy kategoria istnieje - cos a'la create if not exists
-            //@todo - sprawdzic, nowy request nie jest "" bo nazwa musi byc
             $new_category =  Kategoria::create([
                 'nazwa' => $request->category_added,
             ]);

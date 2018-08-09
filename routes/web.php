@@ -136,6 +136,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'as' => 'users.create'
 	]);
 
+	Route::post('users/store', [
+		'uses' => 'UsersController@store',
+		'as' => 'users.store'
+	]);
+
 });
 
 
