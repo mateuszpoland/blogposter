@@ -36,18 +36,26 @@ class UsersController extends Controller
 	 		'name' => 'required',
 	 		'email' => 'required|email',
 	 	]);
-	 	sfdsf
+
+	 	$fail = array();
+
 	 	try
 	 	{
-	 		if(strlen($request->name) < 5 )
+	 		if(strlen($request->name) < 5)
 	 		{
-	 			$this->fail['name'] = 'Nazwa użytkownika jest zbyt krótka';
+	 			$fail['name'] = 'Nazwa użytkownika jest zbyt krótka.';
 	 			Throw new Exception();
 	 		}
 
-	 		if(!null == User::where('name', $request->name)->get())
+	 		if(!null == User::where('name', $request->name)->first())
 	 		{
-	 			$this->fail['name'] = 'Użytkownik istnieje';
+	 			$fail['name'] = 'Użytkownik istnieje. Wybierz inną nazwę użytkownika';
+	 			Throw new Exception();
+	 		}
+
+	 		if(!null == User::where('email', $request->email)->first())
+	 		{
+	 			$fail['email'] = 'Podany email jest już zajęty.';
 	 			Throw new Exception();
 	 		}
 
@@ -55,7 +63,7 @@ class UsersController extends Controller
 	 	catch(Exception $e)
 	 	{
 	 		return redirect()->route('users.create')
-	 						 ->with('fail', $this->fail);
+	 						 ->with('fail', $fail);
 	 	}
 	 	
 	 	
@@ -71,7 +79,7 @@ class UsersController extends Controller
 	 	$profile = Profile::create([
 	 		'user_id' => $user->id,
 	 		//defaultowy avatar
-	 		'avatar' => ''
+	 		'avatar' => '/public/uploads/avatars/admin.jpeg'
 	 	]);
 
 	 	return redirect()->route('users.index')
