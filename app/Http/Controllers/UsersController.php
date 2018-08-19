@@ -79,11 +79,22 @@ class UsersController extends Controller
 	 	$profile = Profile::create([
 	 		'user_id' => $user->id,
 	 		//defaultowy avatar
-	 		'avatar' => '/public/uploads/avatars/admin.jpeg'
+	 		'avatar' => '/public/uploads/avatars/def_avatar.jpeg',
 	 	]);
 
 	 	return redirect()->route('users.index')
 	 					->with('success', 'Dodano nowego użytkownika - ' .$user->name)
 	 					->with('fail', null);
+	 }
+
+	 public function privileges(Request $request)
+	 {
+	 	//dd($request->all());
+	 	return [ 
+	 		'user_id' => $request->user_id,
+	 		'admin' => $request->admin,
+	 		'edit' => $request->edit,
+	 		'user' => $request->user,
+	 	];
 	 }
 }

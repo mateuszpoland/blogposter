@@ -141,6 +141,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'as' => 'users.store'
 	]);
 
+	Route::post('users/privileges', [
+		'uses' => 'UsersController@privileges',
+		'as' => 'users.privileges',
+	]);
+
 });
 
 
