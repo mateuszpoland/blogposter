@@ -141,11 +141,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'as' => 'users.store'
 	]);
 
+	//zmiana przywilejow dostepna wylacznie dla adminow
 	Route::post('users/privileges', [
 		'uses' => 'UsersController@privileges',
 		'as' => 'users.privileges',
+	])->middleware('admin');
+
+	//edytuj profil 
+	Route::get('users/profile/{id}', [
+		'uses' => 'ProfilesController@index',
+		'as' => 'profiles.index',
 	]);
 
+	Route::post('users/profile/', [
+		'uses' => 
+	]);
 });
 
 

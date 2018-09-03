@@ -15,6 +15,11 @@ class UsersController extends Controller
 	**/
 	protected $fail = array();
 
+	public function __construct()
+	{
+		$this->middleware('admin');
+	}
+
 	 public function index()
 	 {
 	 	$users = User::all();
@@ -75,7 +80,7 @@ class UsersController extends Controller
 	 	]);
 	 	
 
-	 	//profil
+	 	//profil domyslny
 	 	$profile = Profile::create([
 	 		'user_id' => $user->id,
 	 		//defaultowy avatar
@@ -89,12 +94,28 @@ class UsersController extends Controller
 
 	 public function privileges(Request $request)
 	 {
-	 	//dd($request->all());
-	 	return [ 
-	 		'user_id' => $request->user_id,
-	 		'admin' => $request->admin,
-	 		'edit' => $request->edit,
-	 		'user' => $request->user,
-	 	];
+	 	
+	 	if(empty($request->user_id))
+	 	{
+	 		return redirect()->back();
+	 	}
+
+	 	$user = User::find($request->user_id);
+
+	 	if($request->admin == 'on')
+	 	{
+	 		$user->admin = 1;
+	 		$user->user = 1;
+	 		$user->edit = 1;
+	 		$user->save();
+	 		return redirect()->back();
+	 	}
+	 	$user->admin = 0;
+	 	$user->edit = ($request->edit == 'on') ? 1 : 0;
+	 	$user->user = ($request->user == 'on') ? 1 : 0;
+	 	$user->save();
+	 	return redirect()->back()
+	 					 ->with('success', 'Zmieniono uprawnienia.');
+
 	 }
 }

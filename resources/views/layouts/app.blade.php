@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'BlogPoster') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -103,9 +103,13 @@
                                  <li class="list-group-item">
                                     <a href="{{ route('categories') }}">Zobacz listę kategorii</a>
                                 </li>
+
+                                @if(Auth::user()->admin)
                                  <li class="list-group-item">
                                     <a href="{{ route('users.index') }}">Użytkownicy</a>
                                 </li>
+                                @endif
+                                
                                 <li class="list-group-item">
                                     <a href="{{ route('tags.index') }}">Tagi</a>
                                 </li>
